@@ -3,6 +3,7 @@ package redis
 import (
 	"context"
 	"fmt"
+	"github.com/Mrhb787/hospital-ward-manager/configs"
 	"log"
 	"time"
 
@@ -28,17 +29,18 @@ func NewService(connStr string, client *Client) Service {
 }
 
 func (s *service) NewClient() (*Client, error) {
-	opt, err := redis.ParseURL(s.redisConn)
-	if err != nil {
-		return nil, fmt.Errorf("failed to parse Redis URL: %w", err)
-	}
-
-	rdb := redis.NewClient(opt)
+	appConfig := configs.New()
+	rdb := redis.NewClient(&redis.Options{
+		Addr:     appConfig.RedisConfig.Addr,
+		Username: appConfig.RedisConfig.Username,
+		Password: appConfig.RedisConfig.Password,
+		DB:       0,
+	})
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	_, err = rdb.Ping(ctx).Result()
+	_, err := rdb.Ping(ctx).Result()
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to Redis: %w", err)
 	}

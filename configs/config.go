@@ -22,7 +22,11 @@ type DBConfig struct {
 }
 
 type RedisConfig struct {
-	Host string
+	Host     string
+	Addr     string
+	Username string
+	Password string
+	DB       int
 }
 
 type AppConfig struct {
@@ -51,8 +55,12 @@ func (db DBConfig) new() DBConfig {
 
 func (db RedisConfig) new() RedisConfig {
 	return RedisConfig{
-		Host: getEnv("REDIS_URL", ""),
+		Addr:     getEnv("REDIS_ADDR", ""),
+		Username: getEnv("REDIS_USER", ""),
+		Password: getEnv("REDIS_PASSWORD", ""),
+		DB:       0,
 	}
+
 }
 
 func (api APIConfig) new() APIConfig {

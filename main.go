@@ -14,9 +14,16 @@ import (
 	"github.com/Mrhb787/hospital-ward-manager/service/http/health"
 	"github.com/Mrhb787/hospital-ward-manager/service/http/redis"
 	"github.com/Mrhb787/hospital-ward-manager/transport"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+
+	// load .env
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("Error loading .env file")
+	}
 
 	// service begin
 	serviceStart := time.Now()
@@ -55,6 +62,7 @@ func main() {
 	httpAddr := flag.String("http.addr", addr, "HTTP listen address")
 	flag.Parse()
 
+	fmt.Println("Listening on", *httpAddr)
 	// start server
 	common.Go(func() {
 		func() {
@@ -64,5 +72,6 @@ func main() {
 			}
 		}()
 	})
+	fmt.Println("Listening on ---", *httpAddr)
 	log.Println("Service startup ended!", fmt.Sprintf("Startup time: %d", time.Since(serviceStart).Milliseconds()))
 }

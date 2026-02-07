@@ -16,4 +16,4 @@ func (s MethodType) ToString() string {
 
 type ServicePort string
 
-const LOCAL_SERVICE_PORT ServicePort = "8080"
+const LOCAL_SERVICE_PORT ServicePort = "9090"
