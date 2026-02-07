@@ -20,6 +20,7 @@ type Service interface {
 	GetUserByPhone(phone string) (model.User, error)
 	CreateUserSession(session model.UserSession) (err error)
 	GetUserSession(token string, userId int) (session model.UserSession, err error)
+	UpsertProduct(product model.Product) error
 }
 
 type service struct {

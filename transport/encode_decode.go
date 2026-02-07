@@ -41,6 +41,19 @@ type SignInUserRequest struct {
 	Password string `json:"password"`
 }
 
+type UpsertProductRequest struct {
+	ID            int    `json:"id"`
+	Name          string `json:"name"`
+	Image         string `json:"image"`
+	Price         int    `json:"price"`
+	UnitOfMeasure string `json:"unit_of_measure"`
+	TotalQty      int    `json:"total_qty"`
+	Description   string `json:"description"`
+	Rating        int    `json:"rating"`
+	RatingCount   int    `json:"rating_count"`
+	Tag           string `json:"tag"`
+}
+
 func EncodeGenericResponse(ctx context.Context, w http.ResponseWriter, response interface{}) error {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	return json.NewEncoder(w).Encode(map[string]interface{}{

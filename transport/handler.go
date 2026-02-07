@@ -45,5 +45,13 @@ func NewHandler(req HttpHandlerRequest) http.Handler {
 		optionsWithoutAuth...,
 	))
 
+	// upsert product
+	r.Methods(common.POST.ToString()).Path("/product").Handler(common.NewServer(
+		serviceEndpoints.UpsertProductEndpoint,
+		DecodeUpsertProductRequest,
+		EncodeGenericResponse,
+		optionsWithoutAuth...,
+	))
+
 	return r
 }

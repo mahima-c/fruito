@@ -11,8 +11,9 @@ import (
 )
 
 type Endpoints struct {
-	HeathCheckEndpoint common.Endpoint
-	SignInUserEndpoint common.Endpoint
+	HeathCheckEndpoint    common.Endpoint
+	SignInUserEndpoint    common.Endpoint
+	UpsertProductEndpoint common.Endpoint
 }
 
 func MakeHealthEndpoints(s health.Service) Endpoints {
@@ -23,7 +24,8 @@ func MakeHealthEndpoints(s health.Service) Endpoints {
 
 func MakeHttpServiceEndpoints(dbService database.Service, redisService redis.Service, authService auth.Service) Endpoints {
 	return Endpoints{
-		SignInUserEndpoint: MakeSignInUserEndpoint(authService),
+		SignInUserEndpoint:    MakeSignInUserEndpoint(authService),
+		UpsertProductEndpoint: MakeUpsertProductEndpoint(dbService),
 	}
 }
 
