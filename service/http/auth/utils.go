@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Mrhb787/hospital-ward-manager/model"
+	"github.com/mahima-c/fruito/model"
 	redisUtil "github.com/redis/go-redis/v9"
 )
 

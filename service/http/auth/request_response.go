@@ -1,6 +1,6 @@
 package auth
 
-import "github.com/Mrhb787/hospital-ward-manager/model"
+import "github.com/mahima-c/fruito/model"
 
 type SignInUserRequest struct {
 	PhoneNumber string

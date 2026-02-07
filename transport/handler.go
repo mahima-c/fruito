@@ -3,11 +3,11 @@ package transport
 import (
 	"net/http"
 
-	"github.com/Mrhb787/hospital-ward-manager/common"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/auth"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/database"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/health"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/redis"
+	"github.com/mahima-c/fruito/common"
+	"github.com/mahima-c/fruito/service/http/auth"
+	"github.com/mahima-c/fruito/service/http/database"
+	"github.com/mahima-c/fruito/service/http/health"
+	"github.com/mahima-c/fruito/service/http/redis"
 )
 
 type HttpHandlerRequest struct {
@@ -49,6 +49,22 @@ func NewHandler(req HttpHandlerRequest) http.Handler {
 	r.Methods(common.POST.ToString()).Path("/product").Handler(common.NewServer(
 		serviceEndpoints.UpsertProductEndpoint,
 		DecodeUpsertProductRequest,
+		EncodeGenericResponse,
+		optionsWithoutAuth...,
+	))
+
+	// get product by id
+	r.Methods(common.GET.ToString()).Path("/product").Queries("id", "{id}").Handler(common.NewServer(
+		serviceEndpoints.GetProductByIdEndpoint,
+		DecodeGetProductByIdRequest,
+		EncodeGenericResponse,
+		optionsWithoutAuth...,
+	))
+
+	// get all products
+	r.Methods(common.GET.ToString()).Path("/product").Handler(common.NewServer(
+		serviceEndpoints.GetAllProductsEndpoint,
+		DecodeGetAllProductsRequest,
 		EncodeGenericResponse,
 		optionsWithoutAuth...,
 	))

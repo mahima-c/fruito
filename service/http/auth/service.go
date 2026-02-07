@@ -6,11 +6,11 @@ import (
 	"log"
 	"time"
 
-	"github.com/Mrhb787/hospital-ward-manager/common"
-	"github.com/Mrhb787/hospital-ward-manager/configs"
-	"github.com/Mrhb787/hospital-ward-manager/model"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/database"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/redis"
+	"github.com/mahima-c/fruito/common"
+	"github.com/mahima-c/fruito/configs"
+	"github.com/mahima-c/fruito/model"
+	"github.com/mahima-c/fruito/service/http/database"
+	"github.com/mahima-c/fruito/service/http/redis"
 )
 
 type Service interface {

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/Mrhb787/hospital-ward-manager/model"
+	"github.com/mahima-c/fruito/model"
 )
 
 func (s *service) GetUserById(userId uint32) (resp model.User, err error) {

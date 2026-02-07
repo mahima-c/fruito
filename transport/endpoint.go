@@ -3,17 +3,19 @@ package transport
 import (
 	"context"
 
-	"github.com/Mrhb787/hospital-ward-manager/common"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/auth"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/database"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/health"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/redis"
+	"github.com/mahima-c/fruito/common"
+	"github.com/mahima-c/fruito/service/http/auth"
+	"github.com/mahima-c/fruito/service/http/database"
+	"github.com/mahima-c/fruito/service/http/health"
+	"github.com/mahima-c/fruito/service/http/redis"
 )
 
 type Endpoints struct {
-	HeathCheckEndpoint    common.Endpoint
-	SignInUserEndpoint    common.Endpoint
-	UpsertProductEndpoint common.Endpoint
+	HeathCheckEndpoint     common.Endpoint
+	SignInUserEndpoint     common.Endpoint
+	UpsertProductEndpoint  common.Endpoint
+	GetProductByIdEndpoint common.Endpoint
+	GetAllProductsEndpoint common.Endpoint
 }
 
 func MakeHealthEndpoints(s health.Service) Endpoints {
@@ -24,8 +26,10 @@ func MakeHealthEndpoints(s health.Service) Endpoints {
 
 func MakeHttpServiceEndpoints(dbService database.Service, redisService redis.Service, authService auth.Service) Endpoints {
 	return Endpoints{
-		SignInUserEndpoint:    MakeSignInUserEndpoint(authService),
-		UpsertProductEndpoint: MakeUpsertProductEndpoint(dbService),
+		SignInUserEndpoint:     MakeSignInUserEndpoint(authService),
+		UpsertProductEndpoint:  MakeUpsertProductEndpoint(dbService),
+		GetProductByIdEndpoint: MakeGetProductByIdEndpoint(dbService),
+		GetAllProductsEndpoint: MakeGetAllProductsEndpoint(dbService),
 	}
 }
 

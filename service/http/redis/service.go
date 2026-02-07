@@ -3,7 +3,7 @@ package redis
 import (
 	"context"
 	"fmt"
-	"github.com/Mrhb787/hospital-ward-manager/configs"
+	"github.com/mahima-c/fruito/configs"
 	"log"
 	"time"
 

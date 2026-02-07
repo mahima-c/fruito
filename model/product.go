@@ -82,3 +82,50 @@ func UpsertProduct(tx *sql.Tx, p *Product) error {
 	)
 	return err
 }
+
+func GetProductById(tx *sql.Tx, id int) (*Product, error) {
+	query := `
+		SELECT id, name, image, price, unit_of_measure, total_qty, description, rating, rating_count, tag
+		FROM product
+		WHERE id = $1
+	`
+	row := tx.QueryRow(query, id)
+
+	var p Product
+	err := row.Scan(
+		&p.ID, &p.Name, &p.Image, &p.Price, &p.UnitOfMeasure, &p.TotalQty, &p.Description, &p.Rating, &p.RatingCount, &p.Tag,
+	)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
+		return nil, err
+	}
+	return &p, nil
+}
+
+func GetAllProducts(tx *sql.Tx, limit, offset int) ([]Product, error) {
+	query := `
+		SELECT id, name, image, price, unit_of_measure, total_qty, description, rating, rating_count, tag
+		FROM product
+		LIMIT $1 OFFSET $2
+	`
+	rows, err := tx.Query(query, limit, offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var products []Product
+	for rows.Next() {
+		var p Product
+		err := rows.Scan(
+			&p.ID, &p.Name, &p.Image, &p.Price, &p.UnitOfMeasure, &p.TotalQty, &p.Description, &p.Rating, &p.RatingCount, &p.Tag,
+		)
+		if err != nil {
+			return nil, err
+		}
+		products = append(products, p)
+	}
+	return products, nil
+}

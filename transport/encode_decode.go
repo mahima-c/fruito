@@ -54,6 +54,15 @@ type UpsertProductRequest struct {
 	Tag           string `json:"tag"`
 }
 
+type GetProductByIdRequest struct {
+	ID int
+}
+
+type GetAllProductsRequest struct {
+	Limit  int
+	Offset int
+}
+
 func EncodeGenericResponse(ctx context.Context, w http.ResponseWriter, response interface{}) error {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	return json.NewEncoder(w).Encode(map[string]interface{}{

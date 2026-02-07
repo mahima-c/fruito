@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Mrhb787/hospital-ward-manager/model"
 	_ "github.com/lib/pq"
+	"github.com/mahima-c/fruito/model"
 )
 
 type Client struct {
@@ -20,7 +20,9 @@ type Service interface {
 	GetUserByPhone(phone string) (model.User, error)
 	CreateUserSession(session model.UserSession) (err error)
 	GetUserSession(token string, userId int) (session model.UserSession, err error)
-	UpsertProduct(product model.Product) error
+	GetProductById(id int) (*model.Product, error)
+	UpsertProducts(products []model.Product) error
+	GetAllProducts(limit, offset int) ([]model.Product, error)
 }
 
 type service struct {

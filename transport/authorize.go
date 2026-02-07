@@ -1,7 +1,7 @@
 package transport
 
 import (
-	"github.com/Mrhb787/hospital-ward-manager/common"
+	"github.com/mahima-c/fruito/common"
 )
 
 var optionsWithoutRouteCheck = []common.ServerOption{

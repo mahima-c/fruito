@@ -5,12 +5,12 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Mrhb787/hospital-ward-manager/configs"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/auth"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/database"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/health"
-	"github.com/Mrhb787/hospital-ward-manager/service/http/redis"
-	"github.com/Mrhb787/hospital-ward-manager/transport"
+	"github.com/mahima-c/fruito/configs"
+	"github.com/mahima-c/fruito/service/http/auth"
+	"github.com/mahima-c/fruito/service/http/database"
+	"github.com/mahima-c/fruito/service/http/health"
+	"github.com/mahima-c/fruito/service/http/redis"
+	"github.com/mahima-c/fruito/transport"
 )
 
 //go:embed main.html

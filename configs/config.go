@@ -3,7 +3,7 @@ package configs
 import (
 	"os"
 
-	"github.com/Mrhb787/hospital-ward-manager/common"
+	"github.com/mahima-c/fruito/common"
 )
 
 type ServiceConfig struct {
